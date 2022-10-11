@@ -24,7 +24,7 @@ const Content = styled(Container)`
 const Items = styled.div`
   max-width: 470px;
   width: 100%;
-  background: #ebebeb;
+  background: #fff;
   box-shadow: 5px 5px 10px rgba(138, 138, 138, 0.1);
   border-radius: 5px;
   padding: 40px 0;

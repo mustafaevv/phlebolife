@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import styled from "styled-components";
 
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import Routers from "./router/Routers";
 
 const CallButton = styled.button`
@@ -37,6 +38,7 @@ const App = () => {
             <FontAwesomeIcon icon={faPhone} />
           </CallButton>
         </main>
+        <Footer/>
       </div>
     </BrowserRouter>
   );

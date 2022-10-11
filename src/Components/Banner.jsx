@@ -10,7 +10,7 @@ import styled from "styled-components";
 import Container from "../layout/Container";
 import img from "../static/images/banner.png";
 
-const Block = styled.div`
+const Block = styled.section`
   background: url(${img});
   background-position: center;
   backdrop-filter: blur(10px);
@@ -61,7 +61,7 @@ const Controller = styled.div`
   gap: 1.5em;
   margin-bottom: 5em;
 
-  @media (max-width:420px) {
+  @media (max-width: 420px) {
     flex-direction: column;
     gap: 3em;
   }
@@ -96,12 +96,13 @@ const Location = styled.p`
 `;
 
 const Modal = styled.div`
+  overflow: ${({ open }) => (open ? "hidden" : "scroll")};
   width: ${({ open }) => (open ? "100%" : "30%")};
   height: 110vh;
-  position: ${({ open }) => (open ? "absolute" : "relative")};
+  position: ${({ open }) => (open ? "absolute" : "fixed")};
   top: ${({ open }) => (open ? "-10%" : "-100%")};
   left: ${({ open }) => (open ? "0%" : "-100%")};
-  z-index: ${({ open }) => (open ? "10000" : "-100")};
+  z-index: ${({ open }) => (open ? "10000" : "10")};
   background: ${({ open }) => (open ? "rgba(0, 0, 0, 0.674)" : "none")};
   backdrop-filter: blur(10px);
   display: ${({ open }) => (open ? "flex" : "none")};
@@ -203,11 +204,6 @@ const Banner = () => {
   const [isActive, setIsActive] = useState(true);
   const [open, setOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  // useEffect(() => {
-  //   isActive === true
-  //     ? (document.body.style.overflow = "hidden")
-  //     : (document.body.style.overflow = "");
-  // }, []);
   const handleOpen = () => {
     setOpen((state) => !state);
   };
@@ -217,82 +213,82 @@ const Banner = () => {
   };
   return (
     <Block open={open}>
-        <Items open={open}>
-          <Desc>
-            Oyoq surunkali vena va limfa kasalliklarni davolovchi klinika
-          </Desc>
-          <Title>
-            Oyoqlarda “varikoz” bo‘lsa albatta qabulga yoziling yordam beramiz!
-          </Title>
-          <Text>
-            Bizda dalillarga asoslangan xolda, oyoq varikoz kasalligini eng
-            zamonaviy davolash usullari! Flebolog maslaxati oyoq vena dopleri
-            bilan 170 000 so‘m{" "}
-          </Text>
-          <Controller>
-            <Button onClick={handleClickButton} isActive={isActive}>
-              {" "}
-              Ko‘rikka yozilish{" "}
-            </Button>
-            <Button onClick={handleOpen}> Biz bilan bog‘lanish </Button>
-          </Controller>
-          <Item>
-            <Location>
-              {" "}
-              <FontAwesomeIcon icon={faLocationDot} /> Toshkent
-            </Location>
-            <Location>
-              {" "}
-              <FontAwesomeIcon icon={faLocationDot} /> Samarqand
-            </Location>
-          </Item>
-          <Modal open={open}>
-            <ModalWindow open={open}>
-              <ModalWindowTop>
-                <p>Biz bilan bog‘lanish</p>
-                <button onClick={handleOpen}>
-                  {" "}
-                  <FontAwesomeIcon icon={faClose} />{" "}
-                </button>
-              </ModalWindowTop>
-              <ModalWindowBottom>
-                <a href="tel+998712356100">Toshkent +998 (71) 235-61-00</a>
-                <a href="tel:+998954106100">Samarqand +998 (95) 410-61-00</a>
-              </ModalWindowBottom>
-            </ModalWindow>
-          </Modal>
-          <Modal open={modalOpen}>
-            <ModalWindow open={modalOpen}>
-              <ModalWindowTop>
-                <p>Ko‘rikka yozilish</p>
-                <button onClick={handleClickButton}>
-                  {" "}
-                  <FontAwesomeIcon icon={faClose} />{" "}
-                </button>
-              </ModalWindowTop>
-              <ModalWindowBottom>
-                <form action="">
-                  <input type="text" placeholder="Ismingiz*" />
-                  <FontAwesomeIcon icon={faPen} />
-                </form>
-                <form action="">
-                  <input type="text" placeholder="Telefon*" />
-                  <FontAwesomeIcon icon={faPen} />
-                </form>
-                <DropDown>
-                  <p>Shahar</p>
-                  <select name="" id="">
-                    <option value="toshkent">toshkent</option>
-                    <option value="samarqand">samarqand</option>
-                  </select>
-                </DropDown>
-                <DropDownButton onClick={handleClickButton}>
-                  yuborish
-                </DropDownButton>
-              </ModalWindowBottom>
-            </ModalWindow>
-          </Modal>
-        </Items>
+      <Items open={open}>
+        <Desc>
+          Oyoq surunkali vena va limfa kasalliklarni davolovchi klinika
+        </Desc>
+        <Title>
+          Oyoqlarda “varikoz” bo‘lsa albatta qabulga yoziling yordam beramiz!
+        </Title>
+        <Text>
+          Bizda dalillarga asoslangan xolda, oyoq varikoz kasalligini eng
+          zamonaviy davolash usullari! Flebolog maslaxati oyoq vena dopleri
+          bilan 170 000 so‘m{" "}
+        </Text>
+        <Controller>
+          <Button onClick={handleClickButton} isActive={isActive}>
+            {" "}
+            Ko‘rikka yozilish{" "}
+          </Button>
+          <Button onClick={handleOpen}> Biz bilan bog‘lanish </Button>
+        </Controller>
+        <Item>
+          <Location>
+            {" "}
+            <FontAwesomeIcon icon={faLocationDot} /> Toshkent
+          </Location>
+          <Location>
+            {" "}
+            <FontAwesomeIcon icon={faLocationDot} /> Samarqand
+          </Location>
+        </Item>
+        <Modal open={open}>
+          <ModalWindow open={open}>
+            <ModalWindowTop>
+              <p>Biz bilan bog‘lanish</p>
+              <button onClick={handleOpen}>
+                {" "}
+                <FontAwesomeIcon icon={faClose} />{" "}
+              </button>
+            </ModalWindowTop>
+            <ModalWindowBottom>
+              <a href="tel+998712356100">Toshkent +998 (71) 235-61-00</a>
+              <a href="tel:+998954106100">Samarqand +998 (95) 410-61-00</a>
+            </ModalWindowBottom>
+          </ModalWindow>
+        </Modal>
+        <Modal open={modalOpen}>
+          <ModalWindow open={modalOpen}>
+            <ModalWindowTop>
+              <p>Ko‘rikka yozilish</p>
+              <button onClick={handleClickButton}>
+                {" "}
+                <FontAwesomeIcon icon={faClose} />{" "}
+              </button>
+            </ModalWindowTop>
+            <ModalWindowBottom>
+              <form action="">
+                <input type="text" placeholder="Ismingiz*" />
+                <FontAwesomeIcon icon={faPen} />
+              </form>
+              <form action="">
+                <input type="text" placeholder="Telefon*" />
+                <FontAwesomeIcon icon={faPen} />
+              </form>
+              <DropDown>
+                <p>Shahar</p>
+                <select name="" id="">
+                  <option value="toshkent">toshkent</option>
+                  <option value="samarqand">samarqand</option>
+                </select>
+              </DropDown>
+              <DropDownButton onClick={handleClickButton}>
+                yuborish
+              </DropDownButton>
+            </ModalWindowBottom>
+          </ModalWindow>
+        </Modal>
+      </Items>
     </Block>
   );
 };
